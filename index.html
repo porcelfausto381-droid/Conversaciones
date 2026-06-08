@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CONVERSACIONES — Archivo Editorial · Fausto Porcel</title>
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #EAE7E1;
+            color: #1A1A1A;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            font-weight: 400;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Tipografía protagonista: autoridad editorial */
+        h1, h2, h3, .hero-title, .nav-logo, .edition-number, .publication-name, button, .btn, .archive-item h3, .sobre-texto strong, .journal-title, .chapter-title {
+            font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* navegación */
+        .site-nav {
+            padding: 2rem 0 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .nav-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            font-size: 1.7rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            text-decoration: none;
+            color: #1A1A1A;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2F3B45;
+            letter-spacing: 0.02em;
+            transition: color 0.2s ease;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .nav-links a:hover {
+            color: #1A1A1A;
+            border-bottom-color: #4E5963;
+        }
+
+        section {
+            margin: 4rem 0 5rem;
+            scroll-margin-top: 2rem;
+        }
+
+        /* hero */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 1rem 0 3rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 12vw, 5.5rem);
+            font-weight: 550;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-sub {
+            font-size: 1.5rem;
+            font-family: 'EB Garamond', serif;
+            font-weight: 400;
+            color: #2F3B45;
+            margin-bottom: 2rem;
+            max-width: 650px;
+        }
+
+        .hero-intro {
+            font-size: 1.1rem;
+            color: #3D4A55;
+            max-width: 540px;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        /* botones */
+        .btn {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid #1A1A1A;
+            padding: 0.8rem 1.8rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            color: #1A1A1A;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #1A1A1A;
+            color: #EAE7E1;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #2F3B45;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline:hover {
+            background: #1A1A1A;
+            color: #EAE7E1;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .section-header {
+            margin-bottom: 2.5rem;
+            border-left: 2px solid #4E5963;
+            padding-left: 1.2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            font-family: 'EB Garamond', serif;
+        }
+
+        .section-sub {
+            color: #4E5963;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.4rem;
+        }
+
+        /* sobre proyecto */
+        .sobre-texto {
+            max-width: 780px;
+            font-size: 1.2rem;
+            line-height: 1.65;
+            color: #1E2A32;
+        }
+
+        .sobre-texto p {
+            margin-bottom: 1.2rem;
+        }
+
+        /* archivo: grid futuras ediciones */
+        .archive-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .edition-card {
+            background: rgba(255,255,245,0.4);
+            padding: 2rem 2rem 2rem 2rem;
+            border-left: 4px solid #2F3B45;
+            transition: all 0.2s ease;
+        }
+
+        .edition-number {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #4E5963;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .edition-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            font-family: 'EB Garamond', serif;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .edition-author {
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #2F3B45;
+            margin-bottom: 0.75rem;
+        }
+
+        .edition-desc {
+            max-width: 650px;
+            margin: 1rem 0 1.5rem;
+            font-size: 1rem;
+            color: #2B3B44;
+        }
+
+        /* lectura completa estilo revista */
+        .lectura-container {
+            background-color: #FCFAF5;
+            padding: 3rem 2rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .reading-wrapper {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .journal-masthead {
+            text-align: center;
+            border-bottom: 1px solid #DCD8CF;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .journal-masthead h1 {
+            font-size: 2rem;
+            letter-spacing: -0.3px;
+        }
+
+        .edition-badge {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #4E5963;
+        }
+
+        .full-article h2 {
+            font-family: 'EB Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 500;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid #2F3B45;
+            padding-left: 1rem;
+        }
+
+        .full-article h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 1.8rem 0 0.8rem 0;
+            color: #2F3B45;
+        }
+
+        .full-article p {
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #2a2a28;
+        }
+
+        .full-article hr {
+            margin: 2rem 0;
+            border: 0;
+            height: 1px;
+            background: #DCD8CF;
+        }
+
+        .pull-quote {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.4rem;
+            line-height: 1.4;
+            margin: 1.8rem 0;
+            padding-left: 1.2rem;
+            border-left: 4px solid #B9B2A5;
+            color: #2F3B45;
+            font-style: italic;
+        }
+
+        .chapter-number {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8A7F72;
+        }
+
+        /* pdf y footer */
+        .pdf-area {
+            background: #F1EFEA;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid #DAD5CA;
+            border-radius: 2px;
+        }
+
+        .footer-note {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid #D2CDC2;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #5C6A73;
+            letter-spacing: 0.5px;
+        }
+
+        /* fade-in sutil */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.25rem;
+            }
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            .edition-title {
+                font-size: 1.8rem;
+            }
+            .full-article h2 {
+                font-size: 1.6rem;
+            }
+            .lectura-container {
+                padding: 1.5rem;
+            }
+        }
+
+        /* impresión profesional */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                margin: 0;
+                padding: 0;
+            }
+            .site-nav, .btn, .btn-group, .pdf-area .btn, .footer-note, .hero .btn, .card-buttons, .nav-links, .download-actions {
+                display: none !important;
+            }
+            .container {
+                max-width: 100%;
+                padding: 0.3in;
+            }
+            .lectura-container {
+                background: white;
+                padding: 0;
+                box-shadow: none;
+            }
+            .full-article p {
+                font-size: 11pt;
+                line-height: 1.45;
+            }
+            .pull-quote {
+                border-left: 2px solid #aaa;
+            }
+            .section-header {
+                border-left: 1px solid #aaa;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo" id="logoHome">CONVERSACIONES</a>
+            <ul class="nav-links">
+                <li><a href="#inicio" data-nav="inicio">Inicio</a></li>
+                <li><a href="#sobre" data-nav="sobre">Sobre el proyecto</a></li>
+                <li><a href="#archivo" data-nav="archivo">Archivo</a></li>
+                <li><a href="#lectura" data-nav="lectura">Lectura online</a></li>
+                <li><a href="#descarga" data-nav="descarga">Descarga PDF</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero fade-up">
+        <h1 class="hero-title">CONVERSACIONES</h1>
+        <div class="hero-sub">Conversaciones que se transforman en ideas.</div>
+        <div class="hero-intro">Un archivo editorial construido a partir de conversaciones reales.<br>Colección a cargo de Fausto Porcel.</div>
+        <div class="btn-group">
+            <a href="#archivo" class="btn btn-primary">Explorar archivo</a>
+            <a href="#lectura" class="btn btn-outline">Lectura online</a>
+        </div>
+        <hr class="sep" style="margin-top: 2rem; width: 60px; border: 0; height: 1px; background: #B9B2A5;">
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="fade-up">
+        <div class="section-header">
+            <h2>Sobre el proyecto</h2>
+            <div class="section-sub">Archivo & pensamiento</div>
+        </div>
+        <div class="sobre-texto">
+            <p><strong>Conversaciones</strong> es un proyecto editorial independiente que parte de conversaciones reales para explorar ideas que merecen más tiempo del que suelen recibir. Cada edición toma una conversación como punto de partida para desarrollar una reflexión escrita. El objetivo no es entrevistar personas. El objetivo es pensar junto a ellas.</p>
+            <p>Este archivo reúne ensayos breves donde la voz del otro se vuelve material de pensamiento. La redacción, reflexión y estructura narrativa corren por cuenta de <strong>Fausto Porcel</strong>, quien construye un puente entre la oralidad y la escritura.</p>
+            <p>Un espacio de lectura sobrio, atemporal, donde el contenido —la palabra pensada— es el verdadero protagonista.</p>
+            <div class="sobre-signature" style="margin-top: 1.5rem; font-size:0.85rem; border-top:1px solid #ccc9c0; padding-top:1rem;">— Archivo vivo · Nuevas ediciones se integrarán progresivamente</div>
+        </div>
+    </section>
+
+    <!-- ARCHIVO: incluye edición 001 y preparado para futuras -->
+    <section id="archivo" class="fade-up">
+        <div class="section-header">
+            <h2>ARCHIVO</h2>
+            <div class="section-sub">Ediciones disponibles</div>
+        </div>
+        <div class="archive-grid">
+            <div class="edition-card">
+                <div class="edition-number">N° 001</div>
+                <div class="edition-title">No es que no te guste</div>
+                <div class="edition-author">Una conversación con Gonzalo Britos · Reflexión y redacción: Fausto Porcel</div>
+                <div class="edition-desc">Sobre aprendizaje, escucha y comprensión. La célebre frase “No es que no te guste. Es que no lo entendés” es el punto de partida para una indagación en torno a la paciencia, la frustración y el tiempo que necesita cualquier proceso de comprensión.</div>
+                <div class="card-buttons">
+                    <a href="#lectura" class="btn btn-outline" style="border-color:#2F3B45;">Leer online</a>
+                    <a href="#" id="downloadPdfBtn" class="btn btn-primary" style="background:#2F3B45; border-color:#2F3B45;">Descargar PDF</a>
+                    <button id="printEditionBtn" class="btn btn-outline">Imprimir / Guardar PDF</button>
+                </div>
+            </div>
+            <!-- Aquí se agregarán futuras ediciones: N°002, N°003... -->
+        </div>
+    </section>
+
+    <!-- LECTURA ONLINE con contenido completo del PDF -->
+    <section id="lectura" class="fade-up">
+        <div class="section-header">
+            <h2>Lectura online</h2>
+            <div class="section-sub">Edición N°001 · Formato revista</div>
+        </div>
+        <div class="lectura-container">
+            <div class="reading-wrapper">
+                <div class="journal-masthead">
+                    <div class="edition-badge">COLECCIÓN DE CONVERSACIONES REALES</div>
+                    <h1>No es que no te guste</h1>
+                    <p style="margin-top: 0.5rem; font-style:italic; color:#4E5963;">Una conversación con Gonzalo Britos<br>Reflexión, voz y redacción: Fausto Porcel</p>
+                    <div style="font-size:0.7rem; letter-spacing:2px; margin-top:0.5rem;">Observación · pensamiento · experiencia · filosofía cotidiana · aprendizaje</div>
+                </div>
+                <div class="full-article" id="contenidoCompleto">
+                    <p>La frase apareció en medio de una conversación sobre música. No fue una afirmación preparada ni una conclusión cuidadosamente elaborada. Surgió mientras hablábamos sobre aprender, enseñar, escuchar y dedicar tiempo a algo.</p>
+                    <p>La dijo Gonzalo Britos, músico y docente de veinte años. Alguien que pasa buena parte de su tiempo estudiando música, tocándola y dándola a conocer en eventos, acompañado de transmitir sus conocimientos en clases particulares. Lo interesante de Britos no es una credencial ni un recorrido académico. Es que vive la música de una manera que obliga a pensar. La estudia, la enseña y, sobre todo, reflexiona sobre ella. Y al reflexionar sobre la música, casi siempre termina reflexionando sobre el aprendizaje.</p>
+                    <p>La frase quedó resonando porque parecía referirse a algo más grande que un disco difícil de escuchar o un acorde que cuesta dominar. Parecía referirse a una confusión muy frecuente, y muy costosa: la de tomar la incomprensión por rechazo.</p>
+                    <p>Existe una tendencia bastante común a abandonar rápidamente aquello que todavía no comprendemos. Escuchamos una obra una vez y decidimos que no nos gusta. Intentamos aprender una habilidad durante algunas semanas y concluimos que no es para nosotros. Nos exponemos a algo una vez, no nos produce nada, y lo descartamos.</p>
+                    <p>El problema es que entre la exposición y la comprensión hay una distancia. No siempre es visible. No siempre se siente. Pero existe, y se necesita tiempo para atravesarla.</p>
+                    <div class="pull-quote">“No podés arreglar un error que no sabés que existe.”</div>
+                    <h2>Reconocer para aprender</h2>
+                    <p>La observación parece sencilla, pero encierra una parte fundamental de cualquier proceso de aprendizaje. Antes de mejorar, primero hay que reconocer aquello que todavía no entendemos. Y reconocerlo implica haberlo mirado el tiempo suficiente como para verlo.</p>
+                    <p>Aprender implica convivir con la frustración. Supone equivocarse. Implica descubrir, a veces con incomodidad, errores que antes no veríamos porque todavía no teníamos las herramientas para identificarlos. Hay una paradoja en eso: cuanto más uno aprende, más consciente se vuelve de lo que le falta. El avance, al principio, puede sentirse como un retroceso.</p>
+                    <p>Eso es difícil de sostener. Requiere una disposición que no siempre se tiene y que muchas veces nadie enseña: la disposición a permanecer frente a la dificultad sin huir de ella. La disciplina de volver una y otra vez sobre aquello que aún no dominamos, no porque sea placentero, sino porque sabemos que del otro lado de ese esfuerzo hay algo que todavía no podemos ver.</p>
+                    
+                    <h3>La frustración</h3>
+                    <p>Mientras escuchaba a Britos, recordé algunas ideas de Paulo Freire. Para él, aprender no era recibir información, sino involucrarse activamente con aquello que se estudia. El conocimiento no se deposita en alguien; se construye en el encuentro entre la persona y el objeto de su atención. Esa construcción lleva tiempo. Y lleva error. Y lleva la voluntad de seguir cuando el proceso todavía no muestra resultados visibles.</p>
+                    <p>La conversación con Britos iba en esa dirección, aunque sin citar a nadie. Como docente, observa que muchas veces los estudiantes esperan que la comprensión llegue sola, como consecuencia de la exposición. Escuchan una vez. Practican una vez. Y si no ocurre nada, concluyen que el problema es el material, que no son buenos para eso, o que simplemente no les gusta.</p>
+                    <p>Pero conocer algo y entenderlo son procesos distintos. Conocer es haber estado en contacto con una cosa. Entender es haberla habitado el tiempo suficiente como para que empiece a revelar su lógica interna.</p>
+                    
+                    <h3>La paciencia activa</h3>
+                    <p>La conversación también dejó ver otro problema, uno que no es exclusivo de la música ni del aprendizaje, sino de la época. Vivimos rodeados de estímulos. Tenemos acceso a más información, más música, más contenido que en cualquier otro momento de la historia. Esa abundancia es real. Pero no necesariamente produce una comprensión más profunda de las cosas. Puede producir exactamente lo contrario: una familiaridad superficial con muchas cosas que, en el fondo, no entendemos.</p>
+                    <p>Byung-Chul Han describe cómo la aceleración contemporánea transforma nuestra relación con el tiempo. No solo hacemos más cosas: las hacemos más rápido, y esperamos que todo, incluso el aprendizaje, responda a esa velocidad. Pero la comprensión no se acelera. Tiene su propio ritmo, y ese ritmo es frecuentemente más lento que el que estamos dispuestos a tolerar.</p>
+                    <div class="pull-quote">Es una conclusión cómoda. Cierra la pregunta antes de que incomode demasiado. Pero cierra también la posibilidad de seguir.</div>
+                    
+                    <h3>El tiempo</h3>
+                    <p>Por eso, aunque la conversación comenzó hablando de música, terminó girando alrededor de algo más amplio: la relación que tenemos con los procesos lentos. Con las cosas que no se entienden de entrada. Con la paciencia como condición necesaria para que algo empiece a tener sentido.</p>
+                    <p>La paciencia no es pasividad. No es esperar que algo ocurra solo. Es la decisión activa de quedarse frente a algo que todavía no entendemos, sin huir hacia una conclusión más fácil. Es sostener la atención cuando todo invita a distraerse. Es volver.</p>
+                    <p>Queda una pregunta, más personal que teórica: ¿cuántas cosas abandonamos antes de darles la oportunidad de ser comprendidas? ¿Cuántas veces tomamos la incomprensión por rechazo y el tiempo necesario por tiempo perdido?</p>
+                    <p>Después de todo, es posible que algunas de las experiencias más valiosas exijan exactamente aquello que menos parece abundar: tiempo, atención y la disposición a quedarse cuando todavía no entendemos.</p>
+                    <hr>
+                    <p style="font-size:0.85rem; color:#5C6A73;"><strong>CONVERSACIONES</strong> — N°001 · Gonzalo Britos · Reflexión, voz y redacción: Fausto Porcel<br>Tema: Aprendizaje, comprensión · Frase disparadora: “No es que no te guste. Es que no lo entendés.”<br>Palabras clave: Música · Escucha · Paciencia · Frustración · Tiempo · Comprensión · Junio 2026 · Colección editorial pensamiento contemporáneo.</p>
+                </div>
+                <div style="margin-top: 2rem; border-top: 1px solid #E2DDD3; padding-top: 1.5rem; display: flex; gap:1rem; flex-wrap:wrap;">
+                    <button id="printReadingBtn" class="btn btn-outline" style="font-size:0.8rem;">🖨️ Imprimir esta edición</button>
+                    <a href="#" id="downloadPdfFromReading" class="btn btn-outline" style="font-size:0.8rem;">📄 Descargar PDF (edición completa)</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESCARGA PDF -->
+    <section id="descarga" class="fade-up">
+        <div class="section-header">
+            <h2>Descarga PDF</h2>
+            <div class="section-sub">Edición completa · Archivo portable</div>
+        </div>
+        <div class="pdf-area">
+            <p style="margin-bottom: 1rem;">Obtén la edición «No es que no te guste» de Fausto Porcel en formato PDF, con tipografías, márgenes y diseño pensado para lectura impresa o digital sin conexión.</p>
+            <div class="btn-group" style="justify-content: center;">
+                <a href="#" id="heroDownloadPdf" class="btn btn-primary">Descargar edición completa (PDF)</a>
+                <button id="printPdfBtn" class="btn btn-outline">Imprimir / Guardar como PDF</button>
+            </div>
+            <p style="margin-top: 1.5rem; font-size:0.75rem;">El archivo conserva el espíritu editorial: sobriedad, profundidad y énfasis en la lectura.</p>
+        </div>
+    </section>
+
+    <div class="footer-note">
+        <span>CONVERSACIONES · archivo editorial independiente · Fausto Porcel</span><br>
+        <span>N°001 — “No es que no te guste” · Próximas ediciones integrarán este código</span>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // Función de impresión profesional que genera versión completa optimizada para PDF
+        function printFullEdition() {
+            const articleContent = document.getElementById('contenidoCompleto')?.innerHTML || '';
+            const printWindow = window.open('', '_blank');
+            if (!printWindow) {
+                alert("Permita ventanas emergentes para generar la vista de impresión / PDF.");
+                return;
+            }
+            printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head><meta charset="UTF-8"><title>CONVERSACIONES - N°001 No es que no te guste - Fausto Porcel</title>
+            <style>
+                body { font-family: 'Inter', Georgia, serif; background: white; color: black; padding: 0.6in; max-width: 800px; margin: 0 auto; line-height: 1.5; }
+                h1, h2, h3 { font-family: 'EB Garamond', 'Cormorant Garamond', serif; }
+                .print-header { text-align: center; border-bottom: 1px solid #aaa; margin-bottom: 1.5rem; padding-bottom: 0.8rem; }
+                .print-header h1 { font-size: 2.2rem; }
+                .pull-quote { font-style: italic; border-left: 3px solid #888; padding-left: 1rem; margin: 1rem 0; }
+                hr { margin: 1.5rem 0; }
+                .full-article p { margin-bottom: 0.8rem; }
+                @media print { body { padding: 0.3in; } }
+            </style>
+            </head>
+            <body>
+            <div class="print-header">
+                <h1>CONVERSACIONES</h1>
+                <p>Conversaciones que se transforman en ideas.</p>
+                <p style="font-size:0.8rem;">N°001 · Una conversación con Gonzalo Britos · Reflexión y redacción: Fausto Porcel</p>
+            </div>
+            <div class="full-article">
+                ${articleContent}
+            </div>
+            <p style="margin-top: 2rem; font-size:0.7rem; text-align:center;">Archivo editorial — Colección pensamiento contemporáneo — www.conversaciones.editorial</p>
+            </body>
+            </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            setTimeout(() => printWindow.close(), 500);
+        }
+
+        // Asignar eventos a todos los botones de impresión y descarga PDF
+        const printButtons = ['printEditionBtn', 'printReadingBtn', 'printPdfBtn'];
+        printButtons.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('click', (e) => { e.preventDefault(); printFullEdition(); });
+        });
+        const downloadBtns = ['downloadPdfBtn', 'downloadPdfFromReading', 'heroDownloadPdf'];
+        downloadBtns.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('click', (e) => { e.preventDefault(); printFullEdition(); });
+        });
+
+        // Navegación suave
+        document.querySelectorAll('.nav-links a, .btn-primary[href="#archivo"], .btn-outline[href="#lectura"], a[href="#inicio"], a[href="#sobre"], a[href="#archivo"], a[href="#lectura"], a[href="#descarga"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        document.getElementById('logoHome')?.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // animaciones fade
+        const faders = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) { entry.target.style.animationPlayState = 'running'; observer.unobserve(entry.target); } });
+        }, { threshold: 0.1 });
+        faders.forEach(el => { el.style.animationPlayState = 'paused'; observer.observe(el); });
+        setTimeout(() => { faders.forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight) el.style.animationPlayState = 'running'; }); }, 100);
+    })();
+</script>
+</body>
+</html>
