@@ -360,6 +360,68 @@
             }
         }
 
+        /* pestañas para lectura */
+        .lectura-tabs {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .lectura-tabs .tab-btn {
+            background: transparent;
+            border: 1px solid #B9B2A5;
+            padding: 0.5rem 1.5rem;
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 2px;
+            color: #2F3B45;
+        }
+        .lectura-tabs .tab-btn.active {
+            background: #2F3B45;
+            border-color: #2F3B45;
+            color: #EAE7E1;
+        }
+        .lectura-tabs .tab-btn:hover {
+            background: #2F3B45;
+            color: #EAE7E1;
+        }
+        .lectura-contenido {
+            display: block;
+        }
+        .lectura-contenido .edicion-lectura {
+            display: none;
+        }
+        .lectura-contenido .edicion-lectura.active {
+            display: block;
+        }
+
+        /* pdf doble */
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .pdf-block {
+            background: #FCFAF5;
+            padding: 1rem 1.2rem;
+            border: 1px solid #DAD5CA;
+            border-radius: 2px;
+        }
+        .pdf-block h4 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .pdf-block p {
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            color: #2F3B45;
+        }
+
         /* ----- RESPONSIVE MÓVIL (CORRECCIÓN COMPLETA) ----- */
         @media (max-width: 768px) {
             .container {
@@ -469,6 +531,9 @@
             .sobre-texto {
                 font-size: 0.95rem;
             }
+            .pdf-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* pantallas muy pequeñas */
@@ -515,7 +580,7 @@
                 margin: 0;
                 padding: 0;
             }
-            .site-nav, .btn, .btn-group, .pdf-area .btn, .footer-note, .hero .btn, .card-buttons, .nav-links, .download-actions {
+            .site-nav, .btn, .btn-group, .pdf-area .btn, .footer-note, .hero .btn, .card-buttons, .nav-links, .download-actions, .lectura-tabs {
                 display: none !important;
             }
             .container {
@@ -536,6 +601,13 @@
             }
             .section-header {
                 border-left: 1px solid #aaa;
+            }
+            .pdf-grid {
+                display: block;
+            }
+            .pdf-block {
+                border: none;
+                padding: 0.2in 0;
             }
         }
     </style>
@@ -581,74 +653,129 @@
         </div>
     </section>
 
-    <!-- ARCHIVO: incluye edición 001 y preparado para futuras -->
+    <!-- ARCHIVO: incluye edición 001 y 002 -->
     <section id="archivo" class="fade-up">
         <div class="section-header">
             <h2>ARCHIVO</h2>
             <div class="section-sub">Ediciones disponibles</div>
         </div>
         <div class="archive-grid">
-            <div class="edition-card">
+            <!-- Edición 001 -->
+            <div class="edition-card" data-edition="001">
                 <div class="edition-number">N° 001</div>
                 <div class="edition-title">No es que no te guste</div>
                 <div class="edition-author">Una conversación con Gonzalo Britos · Reflexión y redacción: Fausto Porcel</div>
                 <div class="edition-desc">Sobre aprendizaje, escucha y comprensión. La célebre frase “No es que no te guste. Es que no lo entendés” es el punto de partida para una indagación en torno a la paciencia, la frustración y el tiempo que necesita cualquier proceso de comprensión.</div>
                 <div class="card-buttons">
-                    <a href="#lectura" class="btn btn-outline" style="border-color:#2F3B45;">Leer online</a>
-                    <a href="#" id="downloadPdfBtn" class="btn btn-primary" style="background:#2F3B45; border-color:#2F3B45;">Descargar PDF</a>
-                    <button id="printEditionBtn" class="btn btn-outline">Imprimir / Guardar PDF</button>
+                    <a href="#lectura" class="btn btn-outline" style="border-color:#2F3B45;" data-edition="001" data-lectura-tab="001">Leer online</a>
+                    <a href="#" class="btn btn-primary print-pdf-btn" style="background:#2F3B45; border-color:#2F3B45;" data-edition="001">Descargar PDF</a>
+                    <button class="btn btn-outline print-pdf-btn" data-edition="001">Imprimir / Guardar PDF</button>
+                </div>
+            </div>
+            <!-- Edición 002 -->
+            <div class="edition-card" data-edition="002">
+                <div class="edition-number">N° 002</div>
+                <div class="edition-title">Un rato con nosotros mismos</div>
+                <div class="edition-author">Una conversación con Jessica Paolini · Reflexión y redacción: Fausto Porcel</div>
+                <div class="edition-desc">Sobre la atención, la ansiedad y la capacidad de tolerar la incertidumbre. A partir de premisas como "Nos perdemos estar un rato con nosotros mismos" y "La mejor amiga de la ansiedad es evitar", se indaga en cómo la velocidad tecnológica y la búsqueda de alivio inmediato cortocircuitan los procesos lentos y necesarios del pensamiento humano.</div>
+                <div class="card-buttons">
+                    <a href="#lectura" class="btn btn-outline" style="border-color:#2F3B45;" data-edition="002" data-lectura-tab="002">Leer online</a>
+                    <a href="#" class="btn btn-primary print-pdf-btn" style="background:#2F3B45; border-color:#2F3B45;" data-edition="002">Descargar PDF</a>
+                    <button class="btn btn-outline print-pdf-btn" data-edition="002">Imprimir / Guardar PDF</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- LECTURA ONLINE con contenido completo -->
+    <!-- LECTURA ONLINE con pestañas -->
     <section id="lectura" class="fade-up">
         <div class="section-header">
             <h2>Lectura online</h2>
-            <div class="section-sub">Edición N°001 · Formato revista</div>
+            <div class="section-sub">Seleccioná una edición</div>
         </div>
         <div class="lectura-container">
-            <div class="reading-wrapper">
-                <div class="journal-masthead">
-                    <div class="edition-badge">COLECCIÓN DE CONVERSACIONES REALES</div>
-                    <h1>No es que no te guste</h1>
-                    <p style="margin-top: 0.5rem; font-style:italic; color:#4E5963; font-size:0.85rem;">Una conversación con Gonzalo Britos<br>Reflexión, voz y redacción: Fausto Porcel</p>
-                    <div style="font-size:0.65rem; letter-spacing:2px; margin-top:0.5rem;">Observación · pensamiento · experiencia · filosofía cotidiana · aprendizaje</div>
+            <div class="lectura-tabs" id="lecturaTabs">
+                <button class="tab-btn active" data-tab="001">N°001 · No es que no te guste</button>
+                <button class="tab-btn" data-tab="002">N°002 · Un rato con nosotros mismos</button>
+            </div>
+            <div class="lectura-contenido">
+                <!-- EDICIÓN 001 -->
+                <div class="edicion-lectura active" id="lectura-001">
+                    <div class="reading-wrapper">
+                        <div class="journal-masthead">
+                            <div class="edition-badge">COLECCIÓN DE CONVERSACIONES REALES</div>
+                            <h1>No es que no te guste</h1>
+                            <p style="margin-top: 0.5rem; font-style:italic; color:#4E5963; font-size:0.85rem;">Una conversación con Gonzalo Britos<br>Reflexión, voz y redacción: Fausto Porcel</p>
+                            <div style="font-size:0.65rem; letter-spacing:2px; margin-top:0.5rem;">Observación · pensamiento · experiencia · filosofía cotidiana · aprendizaje</div>
+                        </div>
+                        <div class="full-article" id="contenidoCompleto001">
+                            <p>La frase apareció en medio de una conversación sobre música. No fue una afirmación preparada ni una conclusión cuidadosamente elaborada. Surgió mientras hablábamos sobre aprender, enseñar, escuchar y dedicar tiempo a algo.</p>
+                            <p>La dijo Gonzalo Britos, músico y docente de veinte años. Alguien que pasa buena parte de su tiempo estudiando música, tocándola y dándola a conocer en eventos, acompañado de transmitir sus conocimientos en clases particulares. Lo interesante de Britos no es una credencial ni un recorrido académico. Es que vive la música de una manera que obliga a pensar. La estudia, la enseña y, sobre todo, reflexiona sobre ella. Y al reflexionar sobre la música, casi siempre termina reflexionando sobre el aprendizaje.</p>
+                            <p>La frase quedó resonando porque parecía referirse a algo más grande que un disco difícil de escuchar o un acorde que cuesta dominar. Parecía referirse a una confusión muy frecuente, y muy costosa: la de tomar la incomprensión por rechazo.</p>
+                            <p>Existe una tendencia bastante común a abandonar rápidamente aquello que todavía no comprendemos. Escuchamos una obra una vez y decidimos que no nos gusta. Intentamos aprender una habilidad durante algunas semanas y concluimos que no es para nosotros. Nos exponemos a algo una vez, no nos produce nada, y lo descartamos.</p>
+                            <p>El problema es que entre la exposición y la comprensión hay una distancia. No siempre es visible. No siempre se siente. Pero existe, y se necesita tiempo para atravesarla.</p>
+                            <div class="pull-quote">“No podés arreglar un error que no sabés que existe.”</div>
+                            <h2>Reconocer para aprender</h2>
+                            <p>La observación parece sencilla, pero encierra una parte fundamental de cualquier proceso de aprendizaje. Antes de mejorar, primero hay que reconocer aquello que todavía no entendemos. Y reconocerlo implica haberlo mirado el tiempo suficiente como para verlo.</p>
+                            <p>Aprender implica convivir con la frustración. Supone equivocarse. Implica descubrir, a veces con incomodidad, errores que antes no veríamos porque todavía no teníamos las herramientas para identificarlos. Hay una paradoja en eso: cuanto más uno aprende, más consciente se vuelve de lo que le falta. El avance, al principio, puede sentirse como un retroceso.</p>
+                            <p>Eso es difícil de sostener. Requiere una disposición que no siempre se tiene y que muchas veces nadie enseña: la disposición a permanecer frente a la dificultad sin huir de ella. La disciplina de volver una y otra vez sobre aquello que aún no dominamos, no porque sea placentero, sino porque sabemos que del otro lado de ese esfuerzo hay algo que todavía no podemos ver.</p>
+                            
+                            <h3>La frustración</h3>
+                            <p>Mientras escuchaba a Britos, recordé algunas ideas de Paulo Freire. Para él, aprender no era recibir información, sino involucrarse activamente con aquello que se estudia. El conocimiento no se deposita en alguien; se construye en el encuentro entre la persona y el objeto de su atención. Esa construcción lleva tiempo. Y lleva error. Y lleva la voluntad de seguir cuando el proceso todavía no muestra resultados visibles.</p>
+                            <p>La conversación con Britos iba en esa dirección, aunque sin citar a nadie. Como docente, observa que muchas veces los estudiantes esperan que la comprensión llegue sola, como consecuencia de la exposición. Escuchan una vez. Practican una vez. Y si no ocurre nada, concluyen que el problema es el material, que no son buenos para eso, o que simplemente no les gusta.</p>
+                            <p>Pero conocer algo y entenderlo son procesos distintos. Conocer es haber estado en contacto con una cosa. Entender es haberla habitado el tiempo suficiente como para que empiece a revelar su lógica interna.</p>
+                            
+                            <h3>La paciencia activa</h3>
+                            <p>La conversación también dejó ver otro problema, uno que no es exclusivo de la música ni del aprendizaje, sino de la época. Vivimos rodeados de estímulos. Tenemos acceso a más información, más música, más contenido que en cualquier otro momento de la historia. Esa abundancia es real. Pero no necesariamente produce una comprensión más profunda de las cosas. Puede producir exactamente lo contrario: una familiaridad superficial con muchas cosas que, en el fondo, no entendemos.</p>
+                            <p>Byung-Chul Han describe cómo la aceleración contemporánea transforma nuestra relación con el tiempo. No solo hacemos más cosas: las hacemos más rápido, y esperamos que todo, incluso el aprendizaje, responda a esa velocidad. Pero la comprensión no se acelera. Tiene su propio ritmo, y ese ritmo es frecuentemente más lento que el que estamos dispuestos a tolerar.</p>
+                            <div class="pull-quote">Es una conclusión cómoda. Cierra la pregunta antes de que incomode demasiado. Pero cierra también la posibilidad de seguir.</div>
+                            
+                            <h3>El tiempo</h3>
+                            <p>Por eso, aunque la conversación comenzó hablando de música, terminó girando alrededor de algo más amplio: la relación que tenemos con los procesos lentos. Con las cosas que no se entienden de entrada. Con la paciencia como condición necesaria para que algo empiece a tener sentido.</p>
+                            <p>La paciencia no es pasividad. No es esperar que algo ocurra solo. Es la decisión activa de quedarse frente a algo que todavía no entendemos, sin huir hacia una conclusión más fácil. Es sostener la atención cuando todo invita a distraerse. Es volver.</p>
+                            <p>Queda una pregunta, más personal que teórica: ¿cuántas cosas abandonamos antes de darles la oportunidad de ser comprendidas? ¿Cuántas veces tomamos la incomprensión por rechazo y el tiempo necesario por tiempo perdido?</p>
+                            <p>Después de todo, es posible que algunas de las experiencias más valiosas exijan exactamente aquello que menos parece abundar: tiempo, atención y la disposición a quedarse cuando todavía no entendemos.</p>
+                            <hr>
+                            <p style="font-size:0.8rem; color:#5C6A73;"><strong>CONVERSACIONES</strong> — N°001 · Gonzalo Britos · Reflexión, voz y redacción: Fausto Porcel<br>Tema: Aprendizaje, comprensión · Frase disparadora: “No es que no te guste. Es que no lo entendés.”<br>Palabras clave: Música · Escucha · Paciencia · Frustración · Tiempo · Comprensión · Junio 2026 · Colección editorial pensamiento contemporáneo.</p>
+                        </div>
+                        <div style="margin-top: 1.8rem; border-top: 1px solid #E2DDD3; padding-top: 1.2rem; display: flex; gap:0.8rem; flex-wrap:wrap;">
+                            <button class="btn btn-outline print-pdf-btn" style="font-size:0.75rem;" data-edition="001">🖨️ Imprimir esta edición</button>
+                            <a href="#" class="btn btn-outline print-pdf-btn" style="font-size:0.75rem;" data-edition="001">📄 Descargar PDF (edición completa)</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="full-article" id="contenidoCompleto">
-                    <p>La frase apareció en medio de una conversación sobre música. No fue una afirmación preparada ni una conclusión cuidadosamente elaborada. Surgió mientras hablábamos sobre aprender, enseñar, escuchar y dedicar tiempo a algo.</p>
-                    <p>La dijo Gonzalo Britos, músico y docente de veinte años. Alguien que pasa buena parte de su tiempo estudiando música, tocándola y dándola a conocer en eventos, acompañado de transmitir sus conocimientos en clases particulares. Lo interesante de Britos no es una credencial ni un recorrido académico. Es que vive la música de una manera que obliga a pensar. La estudia, la enseña y, sobre todo, reflexiona sobre ella. Y al reflexionar sobre la música, casi siempre termina reflexionando sobre el aprendizaje.</p>
-                    <p>La frase quedó resonando porque parecía referirse a algo más grande que un disco difícil de escuchar o un acorde que cuesta dominar. Parecía referirse a una confusión muy frecuente, y muy costosa: la de tomar la incomprensión por rechazo.</p>
-                    <p>Existe una tendencia bastante común a abandonar rápidamente aquello que todavía no comprendemos. Escuchamos una obra una vez y decidimos que no nos gusta. Intentamos aprender una habilidad durante algunas semanas y concluimos que no es para nosotros. Nos exponemos a algo una vez, no nos produce nada, y lo descartamos.</p>
-                    <p>El problema es que entre la exposición y la comprensión hay una distancia. No siempre es visible. No siempre se siente. Pero existe, y se necesita tiempo para atravesarla.</p>
-                    <div class="pull-quote">“No podés arreglar un error que no sabés que existe.”</div>
-                    <h2>Reconocer para aprender</h2>
-                    <p>La observación parece sencilla, pero encierra una parte fundamental de cualquier proceso de aprendizaje. Antes de mejorar, primero hay que reconocer aquello que todavía no entendemos. Y reconocerlo implica haberlo mirado el tiempo suficiente como para verlo.</p>
-                    <p>Aprender implica convivir con la frustración. Supone equivocarse. Implica descubrir, a veces con incomodidad, errores que antes no veríamos porque todavía no teníamos las herramientas para identificarlos. Hay una paradoja en eso: cuanto más uno aprende, más consciente se vuelve de lo que le falta. El avance, al principio, puede sentirse como un retroceso.</p>
-                    <p>Eso es difícil de sostener. Requiere una disposición que no siempre se tiene y que muchas veces nadie enseña: la disposición a permanecer frente a la dificultad sin huir de ella. La disciplina de volver una y otra vez sobre aquello que aún no dominamos, no porque sea placentero, sino porque sabemos que del otro lado de ese esfuerzo hay algo que todavía no podemos ver.</p>
-                    
-                    <h3>La frustración</h3>
-                    <p>Mientras escuchaba a Britos, recordé algunas ideas de Paulo Freire. Para él, aprender no era recibir información, sino involucrarse activamente con aquello que se estudia. El conocimiento no se deposita en alguien; se construye en el encuentro entre la persona y el objeto de su atención. Esa construcción lleva tiempo. Y lleva error. Y lleva la voluntad de seguir cuando el proceso todavía no muestra resultados visibles.</p>
-                    <p>La conversación con Britos iba en esa dirección, aunque sin citar a nadie. Como docente, observa que muchas veces los estudiantes esperan que la comprensión llegue sola, como consecuencia de la exposición. Escuchan una vez. Practican una vez. Y si no ocurre nada, concluyen que el problema es el material, que no son buenos para eso, o que simplemente no les gusta.</p>
-                    <p>Pero conocer algo y entenderlo son procesos distintos. Conocer es haber estado en contacto con una cosa. Entender es haberla habitado el tiempo suficiente como para que empiece a revelar su lógica interna.</p>
-                    
-                    <h3>La paciencia activa</h3>
-                    <p>La conversación también dejó ver otro problema, uno que no es exclusivo de la música ni del aprendizaje, sino de la época. Vivimos rodeados de estímulos. Tenemos acceso a más información, más música, más contenido que en cualquier otro momento de la historia. Esa abundancia es real. Pero no necesariamente produce una comprensión más profunda de las cosas. Puede producir exactamente lo contrario: una familiaridad superficial con muchas cosas que, en el fondo, no entendemos.</p>
-                    <p>Byung-Chul Han describe cómo la aceleración contemporánea transforma nuestra relación con el tiempo. No solo hacemos más cosas: las hacemos más rápido, y esperamos que todo, incluso el aprendizaje, responda a esa velocidad. Pero la comprensión no se acelera. Tiene su propio ritmo, y ese ritmo es frecuentemente más lento que el que estamos dispuestos a tolerar.</p>
-                    <div class="pull-quote">Es una conclusión cómoda. Cierra la pregunta antes de que incomode demasiado. Pero cierra también la posibilidad de seguir.</div>
-                    
-                    <h3>El tiempo</h3>
-                    <p>Por eso, aunque la conversación comenzó hablando de música, terminó girando alrededor de algo más amplio: la relación que tenemos con los procesos lentos. Con las cosas que no se entienden de entrada. Con la paciencia como condición necesaria para que algo empiece a tener sentido.</p>
-                    <p>La paciencia no es pasividad. No es esperar que algo ocurra solo. Es la decisión activa de quedarse frente a algo que todavía no entendemos, sin huir hacia una conclusión más fácil. Es sostener la atención cuando todo invita a distraerse. Es volver.</p>
-                    <p>Queda una pregunta, más personal que teórica: ¿cuántas cosas abandonamos antes de darles la oportunidad de ser comprendidas? ¿Cuántas veces tomamos la incomprensión por rechazo y el tiempo necesario por tiempo perdido?</p>
-                    <p>Después de todo, es posible que algunas de las experiencias más valiosas exijan exactamente aquello que menos parece abundar: tiempo, atención y la disposición a quedarse cuando todavía no entendemos.</p>
-                    <hr>
-                    <p style="font-size:0.8rem; color:#5C6A73;"><strong>CONVERSACIONES</strong> — N°001 · Gonzalo Britos · Reflexión, voz y redacción: Fausto Porcel<br>Tema: Aprendizaje, comprensión · Frase disparadora: “No es que no te guste. Es que no lo entendés.”<br>Palabras clave: Música · Escucha · Paciencia · Frustración · Tiempo · Comprensión · Junio 2026 · Colección editorial pensamiento contemporáneo.</p>
-                </div>
-                <div style="margin-top: 1.8rem; border-top: 1px solid #E2DDD3; padding-top: 1.2rem; display: flex; gap:0.8rem; flex-wrap:wrap;">
-                    <button id="printReadingBtn" class="btn btn-outline" style="font-size:0.75rem;">🖨️ Imprimir esta edición</button>
-                    <a href="#" id="downloadPdfFromReading" class="btn btn-outline" style="font-size:0.75rem;">📄 Descargar PDF (edición completa)</a>
+                <!-- EDICIÓN 002 -->
+                <div class="edicion-lectura" id="lectura-002">
+                    <div class="reading-wrapper">
+                        <div class="journal-masthead">
+                            <div class="edition-badge">COLECCIÓN DE CONVERSACIONES REALES</div>
+                            <h1>Un rato con nosotros mismos</h1>
+                            <p style="margin-top: 0.5rem; font-style:italic; color:#4E5963; font-size:0.85rem;">Una conversación con Jessica Paolini<br>Reflexión, voz y redacción: Fausto Porcel</p>
+                            <div style="font-size:0.65rem; letter-spacing:2px; margin-top:0.5rem;">Observación · pensamiento · experiencia · psicología · atención · incertidumbre · aburrimiento</div>
+                        </div>
+                        <div class="full-article" id="contenidoCompleto002">
+                            <p>Empezamos hablando de fútbol. Después de algoritmos, de promociones, de inteligencia artificial. En algún punto de esa charla con Jessica Paolini, licenciada en Psicología, el tema se corrió de lugar sin que nadie lo decidiera. Dejamos de hablar de tecnología y empezamos a hablar de nosotros: de la atención, del aprendizaje, de la ansiedad, del aburrimiento, de todo lo que nos pasa cuando dejamos de estar solos con una pregunta.</p>
+                            <p>Fue en ese desplazamiento donde apareció la primera frase, dicha casi al pasar: "Nos perdemos estar un rato con nosotros mismos."</p>
+                            <div class="pull-quote">“Nos perdemos estar un rato con nosotros mismos.”</div>
+                            <p>Habría que detenerse en lo que significa perderse eso. No es, en el fondo, un problema de tiempo disponible. Es que cada vez es más fácil no quedarse a solas con uno mismo ni un segundo: siempre hay algo a mano para llenar ese instante. Un mensaje, un video, una pregunta que ya tiene respuesta antes de terminar de hacerse. La inteligencia artificial forma parte de ese paisaje, pero no es su causa: es apenas la versión más reciente y más eficiente de algo que empezó mucho antes, la primera vez que elegimos revisar el teléfono en lugar de sostener un silencio.</p>
+                            <p>Durante años la pregunta que nos inquietó fue si las máquinas llegarían a pensar como nosotros. Puede que esa no sea la pregunta más útil. Quizás convenga invertirla: ¿qué procesos dejamos de recorrer cuando una herramienta puede hacer parte del camino por nosotros?</p>
+                            <p>El psicólogo Daniel Kahneman distinguió un pensamiento rápido, automático, de un pensamiento lento, deliberado, el que exige esfuerzo y no siempre resulta agradable. Gran parte de lo que llamamos inteligencia artificial funciona como una prótesis del primero: entrega en segundos lo que antes exigía sostener, un rato, la incomodidad de no saber todavía. Y ahí aparece algo interesante: no siempre elegimos el atajo por eficiencia. Muchas veces lo elegimos porque el pensamiento lento nos obliga a lo que Jessica Paolini nombra sin rodeos: tolerar la incertidumbre, no saber qué va a pasar, tolerar la incomodidad —"es muy difícil poder tolerarla", dice— de quedarnos un rato ahí.</p>
+                            <p>Algo parecido ocurre cuando aprendemos algo nuevo. Aprender casi siempre implica atravesar un tramo en el que todavía no sabemos, en el que nos equivocamos delante de otros o de nosotros mismos, en el que somos, por un tiempo, torpes en algo que nos importa. Ese tramo incomoda, y no solo por una cuestión práctica: expone una imagen de nosotros mismos que preferiríamos no mostrar, ni siquiera mostrarnos a nosotros. Por eso cualquier herramienta que permita saltear ese tramo —completar la tarea sin atravesar la torpeza, llegar al resultado sin exhibir el proceso— resulta tan difícil de resistir. No se trata solamente de ahorrar tiempo. Se trata de evitar la exposición de no saber.</p>
+                            <p>Todo esto ocurre, además, en un contexto que dificulta cada vez más sostener la atención el tiempo necesario para que un pensamiento madure. Vivimos en una hiperconexión permanente, disponibles a cada hora para cualquier estímulo, y esa disponibilidad tiene un costo silencioso. El ensayista Nicholas Carr viene señalando desde hace más de una década algo que esta conversación confirmó de otra manera: que el tipo de atención que entrenamos con el uso constante de dispositivos tiende a ser fragmentada, saltarina, poco tolerante a la lentitud, mientras que el pensamiento sostenido requiere exactamente lo contrario. No es una condena de la tecnología, sino una constatación: la atención es un músculo, y como todo músculo, se atrofia cuando se lo ejercita siempre de la manera más fácil.</p>
+                            <div class="pull-quote">“La mejor amiga de la ansiedad es evitar.”</div>
+                            <p>En algún momento de la charla apareció la segunda frase, que terminó funcionando como contrapeso de la primera: "La mejor amiga de la ansiedad es evitar." Y cuando empezamos a evitar, "a veces evitás cada vez más cosas", explica Jessica Paolini: "por eso te sentís muy limitado." Evitar la torpeza de no saber todavía. Evitar la hoja en blanco. Evitar el silencio. Evitar, sobre todo, quedarnos un rato a solas con una idea que todavía no funciona, o con una versión de nosotros mismos que todavía no nos convence. La ansiedad busca alivio inmediato, y casi cualquier atajo que lo ofrezca —una respuesta rápida, una aprobación instantánea, un resultado sin el tramo incómodo que lo precede— se vuelve, sin que nadie lo planee así, una aliada de la evitación. Ahí la inteligencia artificial entra en un terreno más delicado que el de la simple productividad: no solo evita el esfuerzo de pensar, también puede evitar algo más difícil de nombrar, que es la exposición de no saber todavía quiénes somos frente a una idea, un problema o una conversación. La salida, dice Jessica, no es dejar de sentir esa incomodidad —no se puede—, sino "aprender a atravesarla". Buscamos alivio, y buscamos también, cada vez con más frecuencia, alguna forma de validación externa e inmediata de que lo que pensamos, hicimos o sentimos está bien: "vas construyendo la imagen que tenés de vos, y muchas veces ahí entra también la mirada del otro." Ninguna de las dos búsquedas es nueva. Lo nuevo es la velocidad y la disponibilidad con que hoy pueden satisfacerse, y también lo poco que duran: "en el momento te va a dar alivio", advierte Jessica, "a corto plazo te da alivio; a largo plazo es un malestar sostenido en el tiempo." Lo que esa búsqueda de alivio inmediato termina reemplazando es el rato, cada vez más breve, que antes se pasaba a solas con la propia duda, sin nadie —ni siquiera una herramienta— que la resolviera por nosotros.</p>
+                            <p>Ahí aparece, casi como su reverso, el aburrimiento. Solemos tratarlo como una molestia a resolver cuanto antes: alcanza el teléfono, cualquier estímulo, para que desaparezca. Pero el aburrimiento tiene una particularidad que vale la pena mirar de cerca: es, quizás, el momento más puro de estar a solas con uno mismo, sin nada que medie esa compañía. Por eso incomoda. Por eso se evita con tanta rapidez. El filósofo Byung-Chul Han describe una sociedad acelerada e hiperestimulada donde el silencio se ha vuelto un bien escaso, y donde la contemplación —esa capacidad de quedarse en algo, incluso en la nada, sin necesidad inmediata de llenarla— resulta cada vez más difícil de sostener. Lo que desaparece, cuando desaparece el aburrimiento, no es solamente el espacio donde una idea nueva podía madurar. Es también el espacio donde, por un rato, no había nada entre nosotros y nosotros mismos. "Ayuda a la creatividad, ayuda a explorar", resume Jessica: ese tiempo vacío es también el que permite preguntarse qué es realmente significativo para uno.</p>
+                            <p>Y sin embargo, ninguna de estas preguntas se piensa bien en soledad absoluta tampoco. Pensar también es, muchas veces, pensar junto a otro. La conversación con Jessica Paolini funcionó, en ese sentido, como lo que este proyecto busca que sea siempre: no una entrevista que se agota en sus respuestas, sino un proceso de elaboración conjunta donde una idea se completa porque hay otro que la recibe, la cuestiona, la empuja un poco más allá de donde había llegado sola. La psicóloga Sherry Turkle lleva años estudiando de qué manera la tecnología, aun prometiendo más conexión, puede terminar reemplazando la conversación real por sustitutos más cómodos y menos exigentes, y cómo esa sustitución afecta no solo el vínculo con los demás sino, sobre todo, el vínculo con uno mismo: la capacidad de estar a solas sin necesidad de llenar ese rato con algo. Hablar de verdad con otro, después de todo, puede ser una de las formas más directas de aprender a estar, después, un rato a solas con nosotros mismos.</p>
+                            <p>Quizás por eso la pregunta correcta nunca fue qué puede hacer la inteligencia artificial. La pregunta correcta sigue siendo qué procesos dejamos de recorrer cuando una herramienta puede hacer parte del camino por nosotros. Jessica usa en su consultorio una pregunta que sirve exactamente para esto, aplicada a cualquier atajo: "¿te acerca o te aleja?" No todos los rodeos merecen conservarse tal como están: hay caminos que efectivamente conviene acortar. Pero hay otros —tolerar no saber todavía, aburrirse hasta encontrarse con uno mismo, sostener una conversación sin apuro— que no son ineficiencias a corregir. Son la manera en que las personas se transforman, y ninguna herramienta puede recorrerlos por nosotros sin que perdamos algo en el camino.</p>
+                            <p>La conversación con Jessica Paolini terminó sin conclusiones definitivas. Quizás esa sea su mayor enseñanza: no toda pregunta necesita resolverse rápido, y algunas —las que importan de verdad— solo crecen si nadie las apura. Al final, entre el fútbol, los algoritmos y la inteligencia artificial, quedó una imagen simple: la de animarse, aunque sea un rato, a no evitarnos.</p>
+                            <hr>
+                            <p style="font-size:0.8rem; color:#5C6A73;"><strong>CONVERSACIONES</strong> — N°002 · Jessica Paolini · Reflexión, voz y redacción: Fausto Porcel<br>Tema: Atención, incertidumbre, ansiedad · Frase disparadora: “Nos perdemos estar un rato con nosotros mismos.”<br>Palabras clave: Psicología · Herramientas · Dispositivos · Evitación · Alivio inmediato · Tiempo · Comprensión · Julio 2026 · Colección editorial pensamiento contemporáneo.</p>
+                        </div>
+                        <div style="margin-top: 1.8rem; border-top: 1px solid #E2DDD3; padding-top: 1.2rem; display: flex; gap:0.8rem; flex-wrap:wrap;">
+                            <button class="btn btn-outline print-pdf-btn" style="font-size:0.75rem;" data-edition="002">🖨️ Imprimir esta edición</button>
+                            <a href="#" class="btn btn-outline print-pdf-btn" style="font-size:0.75rem;" data-edition="002">📄 Descargar PDF (edición completa)</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -658,13 +785,27 @@
     <section id="descarga" class="fade-up">
         <div class="section-header">
             <h2>Descarga PDF</h2>
-            <div class="section-sub">Edición completa · Archivo portable</div>
+            <div class="section-sub">Ediciones completas · Archivo portable</div>
         </div>
         <div class="pdf-area">
-            <p style="margin-bottom: 1rem; font-size:0.9rem;">Obtén la edición «No es que no te guste» de Fausto Porcel en formato PDF, con tipografías, márgenes y diseño pensado para lectura impresa o digital sin conexión.</p>
-            <div class="btn-group" style="justify-content: center;">
-                <a href="#" id="heroDownloadPdf" class="btn btn-primary">Descargar edición completa (PDF)</a>
-                <button id="printPdfBtn" class="btn btn-outline">Imprimir / Guardar como PDF</button>
+            <p style="margin-bottom: 1rem; font-size:0.9rem;">Obtén las ediciones «No es que no te guste» y «Un rato con nosotros mismos» de Fausto Porcel en formato PDF, con tipografías, márgenes y diseño pensado para lectura impresa o digital sin conexión.</p>
+            <div class="pdf-grid">
+                <div class="pdf-block">
+                    <h4>N°001 · No es que no te guste</h4>
+                    <p>Conversación con Gonzalo Britos · Aprendizaje, escucha, paciencia.</p>
+                    <div class="btn-group" style="justify-content: center;">
+                        <button class="btn btn-primary print-pdf-btn" data-edition="001">Descargar PDF (001)</button>
+                        <button class="btn btn-outline print-pdf-btn" data-edition="001">Imprimir</button>
+                    </div>
+                </div>
+                <div class="pdf-block">
+                    <h4>N°002 · Un rato con nosotros mismos</h4>
+                    <p>Conversación con Jessica Paolini · Atención, ansiedad, incertidumbre.</p>
+                    <div class="btn-group" style="justify-content: center;">
+                        <button class="btn btn-primary print-pdf-btn" data-edition="002">Descargar PDF (002)</button>
+                        <button class="btn btn-outline print-pdf-btn" data-edition="002">Imprimir</button>
+                    </div>
+                </div>
             </div>
             <p style="margin-top: 1.2rem; font-size:0.7rem;">El archivo conserva el espíritu editorial: sobriedad, profundidad y énfasis en la lectura.</p>
         </div>
@@ -672,15 +813,35 @@
 
     <div class="footer-note">
         <span>CONVERSACIONES · archivo editorial independiente · Fausto Porcel</span><br>
-        <span>N°001 — “No es que no te guste” · Próximas ediciones integrarán este código</span>
+        <span>N°001 — “No es que no te guste” · N°002 — “Un rato con nosotros mismos” · Archivo en expansión</span>
     </div>
 </div>
 
 <script>
     (function() {
-        // Función de impresión profesional que genera versión completa optimizada para PDF
-        function printFullEdition() {
-            const articleContent = document.getElementById('contenidoCompleto')?.innerHTML || '';
+        // ---- Contenido dinámico para impresión ----
+        function getEditionContent(editionId) {
+            if (editionId === '001') {
+                const container = document.getElementById('contenidoCompleto001');
+                return {
+                    title: 'CONVERSACIONES — N°001 No es que no te guste',
+                    subtitle: 'Una conversación con Gonzalo Britos · Reflexión y redacción: Fausto Porcel',
+                    content: container ? container.innerHTML : ''
+                };
+            } else if (editionId === '002') {
+                const container = document.getElementById('contenidoCompleto002');
+                return {
+                    title: 'CONVERSACIONES — N°002 Un rato con nosotros mismos',
+                    subtitle: 'Una conversación con Jessica Paolini · Reflexión y redacción: Fausto Porcel',
+                    content: container ? container.innerHTML : ''
+                };
+            }
+            return null;
+        }
+
+        function printFullEdition(editionId) {
+            const data = getEditionContent(editionId);
+            if (!data) return;
             const printWindow = window.open('', '_blank');
             if (!printWindow) {
                 alert("Permita ventanas emergentes para generar la vista de impresión / PDF.");
@@ -689,7 +850,7 @@
             printWindow.document.write(`
             <!DOCTYPE html>
             <html>
-            <head><meta charset="UTF-8"><title>CONVERSACIONES - N°001 No es que no te guste - Fausto Porcel</title>
+            <head><meta charset="UTF-8"><title>${data.title}</title>
             <style>
                 * { margin: 0; padding: 0; box-sizing: border-box; }
                 body { font-family: 'Inter', Georgia, serif; background: white; color: black; padding: 0.5in; max-width: 800px; margin: 0 auto; line-height: 1.5; }
@@ -704,12 +865,12 @@
             </head>
             <body>
             <div class="print-header">
-                <h1>CONVERSACIONES</h1>
+                <h1>${data.title}</h1>
                 <p>Conversaciones que se transforman en ideas.</p>
-                <p style="font-size:0.8rem;">N°001 · Una conversación con Gonzalo Britos · Reflexión y redacción: Fausto Porcel</p>
+                <p style="font-size:0.8rem;">${data.subtitle}</p>
             </div>
             <div class="full-article">
-                ${articleContent}
+                ${data.content}
             </div>
             <p style="margin-top: 2rem; font-size:0.7rem; text-align:center;">Archivo editorial — Colección pensamiento contemporáneo — conversaciones.editorial</p>
             </body>
@@ -721,19 +882,49 @@
             setTimeout(() => printWindow.close(), 500);
         }
 
-        // Asignar eventos a todos los botones de impresión y descarga PDF
-        const printButtons = ['printEditionBtn', 'printReadingBtn', 'printPdfBtn'];
-        printButtons.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.addEventListener('click', (e) => { e.preventDefault(); printFullEdition(); });
-        });
-        const downloadBtns = ['downloadPdfBtn', 'downloadPdfFromReading', 'heroDownloadPdf'];
-        downloadBtns.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.addEventListener('click', (e) => { e.preventDefault(); printFullEdition(); });
+        // ---- Pestañas de lectura ----
+        const tabs = document.querySelectorAll('.tab-btn');
+        const panels = {
+            '001': document.getElementById('lectura-001'),
+            '002': document.getElementById('lectura-002')
+        };
+
+        function activateTab(tabId) {
+            tabs.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
+            Object.keys(panels).forEach(key => {
+                panels[key].classList.toggle('active', key === tabId);
+            });
+        }
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const tabId = this.dataset.tab;
+                if (tabId) activateTab(tabId);
+                // actualizar hash
+                history.pushState(null, '', '#lectura');
+            });
         });
 
-        // Navegación suave
+        // Detectar clic en enlaces "Leer online" desde archivo
+        document.querySelectorAll('[data-lectura-tab]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tabId = this.dataset.lecturaTab;
+                if (tabId) activateTab(tabId);
+                document.querySelector('#lectura').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // ---- Eventos de impresión / PDF ----
+        document.querySelectorAll('.print-pdf-btn').forEach(el => {
+            el.addEventListener('click', function(e) {
+                e.preventDefault();
+                const edition = this.dataset.edition;
+                if (edition) printFullEdition(edition);
+            });
+        });
+
+        // ---- Navegación suave ----
         document.querySelectorAll('.nav-links a, .btn-primary[href="#archivo"], .btn-outline[href="#lectura"], a[href="#inicio"], a[href="#sobre"], a[href="#archivo"], a[href="#lectura"], a[href="#descarga"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
@@ -746,7 +937,7 @@
         });
         document.getElementById('logoHome')?.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-        // animaciones fade
+        // ---- animaciones fade ----
         const faders = document.querySelectorAll('.fade-up');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if(entry.isIntersecting) { entry.target.style.animationPlayState = 'running'; observer.unobserve(entry.target); } });
